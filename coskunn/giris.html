@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="ng.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="giris.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body ng-app="filmsys" ng-controller="girisCtrl">
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h2>FilmSys<br> Giriş</h2>
+            <p>Erişmek için lütfen giriş yapın veya kayıt olun</p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+                <form>
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" class="form-control" ng-model="kullaniciadi" placeholder="Kullanıcı Adı">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" ng-model="sifre" placeholder="Şifre">
+                    </div>
+                    <button type="submit" ng-click="kgirisyap(kullaniciadi,sifre)" class="btn btn-black">Kullanıcı Giriş</button>
+                    <button type="submit" ng-click="ygirisyap(kullaniciadi,sifre)"class="btn btn-black">Yönetici Giriş</button>
+                    <button type="submit" class="btn btn-black">Kayıt Ol</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sinemaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminID" />
+    </Key>
+    <Property Name="adminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullaniciadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film">
+    <Key>
+      <PropertyRef Name="filmID" />
+    </Key>
+    <Property Name="filmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="filmAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="filmTur" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gosterim">
+    <Key>
+      <PropertyRef Name="gosterimID" />
+    </Key>
+    <Property Name="gosterimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="filmID" Type="int" Nullable="false" />
+    <Property Name="seansID" Type="int" Nullable="false" />
+    <Property Name="salonID" Type="int" Nullable="false" />
+    <Property Name="sinemaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kullanici">
+    <Key>
+      <PropertyRef Name="kullaniciID" />
+    </Key>
+    <Property Name="kullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullaniciadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="kullanicisifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="salon">
+    <Key>
+      <PropertyRef Name="salonID" />
+    </Key>
+    <Property Name="salonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="salonNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="seans">
+    <Key>
+      <PropertyRef Name="seansID" />
+    </Key>
+    <Property Name="seansID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="seansZaman" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sinema">
+    <Key>
+      <PropertyRef Name="sinemaID" />
+    </Key>
+    <Property Name="sinemaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sinemaAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sinemaYer" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_gosterim_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="gosterim" Type="Self.gosterim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="filmID" />
+      </Principal>
+      <Dependent Role="gosterim">
+        <PropertyRef Name="filmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gosterim_salon">
+    <End Role="salon" Type="Self.salon" Multiplicity="1" />
+    <End Role="gosterim" Type="Self.gosterim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="salon">
+        <PropertyRef Name="salonID" />
+      </Principal>
+      <Dependent Role="gosterim">
+        <PropertyRef Name="salonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gosterim_seans">
+    <End Role="seans" Type="Self.seans" Multiplicity="1" />
+    <End Role="gosterim" Type="Self.gosterim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="seans">
+        <PropertyRef Name="seansID" />
+      </Principal>
+      <Dependent Role="gosterim">
+        <PropertyRef Name="seansID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gosterim_sinema">
+    <End Role="sinema" Type="Self.sinema" Multiplicity="1" />
+    <End Role="gosterim" Type="Self.gosterim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sinema">
+        <PropertyRef Name="sinemaID" />
+      </Principal>
+      <Dependent Role="gosterim">
+        <PropertyRef Name="sinemaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sinemaModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="film" EntityType="Self.film" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gosterim" EntityType="Self.gosterim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kullanici" EntityType="Self.kullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="salon" EntityType="Self.salon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="seans" EntityType="Self.seans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sinema" EntityType="Self.sinema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_gosterim_film" Association="Self.FK_gosterim_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="gosterim" EntitySet="gosterim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gosterim_salon" Association="Self.FK_gosterim_salon">
+      <End Role="salon" EntitySet="salon" />
+      <End Role="gosterim" EntitySet="gosterim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gosterim_seans" Association="Self.FK_gosterim_seans">
+      <End Role="seans" EntitySet="seans" />
+      <End Role="gosterim" EntitySet="gosterim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gosterim_sinema" Association="Self.FK_gosterim_sinema">
+      <End Role="sinema" EntitySet="sinema" />
+      <End Role="gosterim" EntitySet="gosterim" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

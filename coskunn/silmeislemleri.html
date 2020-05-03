@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="ng.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="giris.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body ng-app="filmsys" ng-controller="silmeCtrl">
+    <a href="eklemeislemleri.html">  <button class="btn btn-black" style="float:left">Ekleme İşlemleri</button></a>
+    <a href="gosterim.html">  <button class="btn btn-black" style="float:right"> Gösterimler</button></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Filmler</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Film No</th>
+                            <th>Film Adı</th>
+                            <th>Film Tür</th>
+                            <th>işlem</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in filmler">
+                            <td>{{x.filmID}}</td>
+                            <td>{{x.filmAd}}</td>
+                            <td>{{x.filmTur}}</td>
+                            <td><button class="btn btn-black" ng-click="filmsil(x.filmID)">SİL</button></td>
+                            
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            <div class="col-sm-6">
+                <h3>Sinemalar</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Sinema Numarası</th>
+                            <th>Sinema Adı</th>
+                            <th>Sinema Yer</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in sinemalar">
+                            <td>{{x.sinemaID}}</td>
+                            <td>{{x.sinemaAd}}</td>
+                            <td>{{x.sinemaYer}}</td>
+                            
+                            
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-sm-12">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Salonlar</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Salon ID</th>
+                            <th>Salon No</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in salonlar">
+                            <td>{{x.salonID}}</td>
+                            <td>{{x.salonNo}}</td>
+                            
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            <div class="col-sm-6">
+                <h3>Seanslar</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Seans No</th>
+                            <th>Seans Zaman</th>
+                            <th>SeansID</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in seanslar">
+                            <td>{{x.seansID}}</td>
+                            <td>{{x.seansZaman}}</td>
+                            <td><button class="btn btn-black" ng-click="sil(x.seansID)">Sil</button></td>
+                          </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1></h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Sinema</h3>
+                <ul class="list-group">
+                    <li ng-repeat="x in sinemalar" class="list-group-item">{{x.sinemaAd}} <button class="btn btn-black" style="float:right" ng-click="bilgilerigetir(x.sinemaID)">Filmler</button> </li>
+
+                </ul>
+
+
+
+            </div>
+            <div class="col-sm-4">
+                <h3>Gösterim Bilgileri</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Film Adı</th>
+                            <th>Film Türü</th>
+                            <th>Salon No</th>
+                            <th>Seans</th>
+                            <th>Gösterimden Kaldır</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in bilgiler">
+                            <td>{{x.filmAd}}</td>
+                            <td>{{x.filmTur}}</td>
+                            <td>{{x.salonNo}}</td>
+                            <td>{{x.seansZaman}}</td>
+                            <td><button class="btn btn-black" ng-click="kaldir(x.gosterimID)">Kaldır</button></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

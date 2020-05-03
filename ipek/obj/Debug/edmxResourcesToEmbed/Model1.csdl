@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sinemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminID" />
+    </Key>
+    <Property Name="adminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film">
+    <Key>
+      <PropertyRef Name="filmID" />
+    </Key>
+    <Property Name="filmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filmAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="filmTur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="gosterim" Relationship="Self.FK_gosterim_film" FromRole="film" ToRole="gosterim" />
+  </EntityType>
+  <EntityType Name="gosterim">
+    <Key>
+      <PropertyRef Name="gosterimID" />
+    </Key>
+    <Property Name="gosterimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filmID" Type="Int32" Nullable="false" />
+    <Property Name="seansID" Type="Int32" Nullable="false" />
+    <Property Name="salonID" Type="Int32" Nullable="false" />
+    <Property Name="sinemaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="film" Relationship="Self.FK_gosterim_film" FromRole="gosterim" ToRole="film" />
+    <NavigationProperty Name="salon" Relationship="Self.FK_gosterim_salon" FromRole="gosterim" ToRole="salon" />
+    <NavigationProperty Name="seans" Relationship="Self.FK_gosterim_seans" FromRole="gosterim" ToRole="seans" />
+    <NavigationProperty Name="sinema" Relationship="Self.FK_gosterim_sinema" FromRole="gosterim" ToRole="sinema" />
+  </EntityType>
+  <EntityType Name="salon">
+    <Key>
+      <PropertyRef Name="salonID" />
+    </Key>
+    <Property Name="salonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="salonNo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="gosterim" Relationship="Self.FK_gosterim_salon" FromRole="salon" ToRole="gosterim" />
+  </EntityType>
+  <EntityType Name="seans">
+    <Key>
+      <PropertyRef Name="seansID" />
+    </Key>
+    <Property Name="seansID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="seansZaman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="gosterim" Relationship="Self.FK_gosterim_seans" FromRole="seans" ToRole="gosterim" />
+  </EntityType>
+  <EntityType Name="sinema">
+    <Key>
+      <PropertyRef Name="sinemaID" />
+    </Key>
+    <Property Name="sinemaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sinemaAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sinemaYer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="gosterim" Relationship="Self.FK_gosterim_sinema" FromRole="sinema" ToRole="gosterim" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_gosterim_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="gosterim" Type="Self.gosterim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="filmID" />
+      </Principal>
+      <Dependent Role="gosterim">
+        <PropertyRef Name="filmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gosterim_salon">
+    <End Role="salon" Type="Self.salon" Multiplicity="1" />
+    <End Role="gosterim" Type="Self.gosterim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="salon">
+        <PropertyRef Name="salonID" />
+      </Principal>
+      <Dependent Role="gosterim">
+        <PropertyRef Name="salonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gosterim_seans">
+    <End Role="seans" Type="Self.seans" Multiplicity="1" />
+    <End Role="gosterim" Type="Self.gosterim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="seans">
+        <PropertyRef Name="seansID" />
+      </Principal>
+      <Dependent Role="gosterim">
+        <PropertyRef Name="seansID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gosterim_sinema">
+    <End Role="sinema" Type="Self.sinema" Multiplicity="1" />
+    <End Role="gosterim" Type="Self.gosterim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sinema">
+        <PropertyRef Name="sinemaID" />
+      </Principal>
+      <Dependent Role="gosterim">
+        <PropertyRef Name="sinemaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sinemaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin" EntityType="Self.admin" />
+    <EntitySet Name="film" EntityType="Self.film" />
+    <EntitySet Name="gosterim" EntityType="Self.gosterim" />
+    <EntitySet Name="salon" EntityType="Self.salon" />
+    <EntitySet Name="seans" EntityType="Self.seans" />
+    <EntitySet Name="sinema" EntityType="Self.sinema" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_gosterim_film" Association="Self.FK_gosterim_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="gosterim" EntitySet="gosterim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gosterim_salon" Association="Self.FK_gosterim_salon">
+      <End Role="salon" EntitySet="salon" />
+      <End Role="gosterim" EntitySet="gosterim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gosterim_seans" Association="Self.FK_gosterim_seans">
+      <End Role="seans" EntitySet="seans" />
+      <End Role="gosterim" EntitySet="gosterim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gosterim_sinema" Association="Self.FK_gosterim_sinema">
+      <End Role="sinema" EntitySet="sinema" />
+      <End Role="gosterim" EntitySet="gosterim" />
+    </AssociationSet>
+    <EntitySet Name="kullanici" EntityType="sinemaModel.kullanici" />
+  </EntityContainer>
+  <EntityType Name="kullanici">
+    <Key>
+      <PropertyRef Name="kullaniciID" />
+    </Key>
+    <Property Name="kullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciadi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanicisifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

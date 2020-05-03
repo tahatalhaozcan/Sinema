@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sinemaModelStoreContainer" CdmEntityContainer="sinemaEntities">
+    <EntitySetMapping Name="admin">
+      <EntityTypeMapping TypeName="sinemaModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="adminID" ColumnName="adminID" />
+          <ScalarProperty Name="kullaniciadi" ColumnName="kullaniciadi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="film">
+      <EntityTypeMapping TypeName="sinemaModel.film">
+        <MappingFragment StoreEntitySet="film">
+          <ScalarProperty Name="filmID" ColumnName="filmID" />
+          <ScalarProperty Name="filmAd" ColumnName="filmAd" />
+          <ScalarProperty Name="filmTur" ColumnName="filmTur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gosterim">
+      <EntityTypeMapping TypeName="sinemaModel.gosterim">
+        <MappingFragment StoreEntitySet="gosterim">
+          <ScalarProperty Name="gosterimID" ColumnName="gosterimID" />
+          <ScalarProperty Name="filmID" ColumnName="filmID" />
+          <ScalarProperty Name="seansID" ColumnName="seansID" />
+          <ScalarProperty Name="salonID" ColumnName="salonID" />
+          <ScalarProperty Name="sinemaID" ColumnName="sinemaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="salon">
+      <EntityTypeMapping TypeName="sinemaModel.salon">
+        <MappingFragment StoreEntitySet="salon">
+          <ScalarProperty Name="salonID" ColumnName="salonID" />
+          <ScalarProperty Name="salonNo" ColumnName="salonNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="seans">
+      <EntityTypeMapping TypeName="sinemaModel.seans">
+        <MappingFragment StoreEntitySet="seans">
+          <ScalarProperty Name="seansID" ColumnName="seansID" />
+          <ScalarProperty Name="seansZaman" ColumnName="seansZaman" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sinema">
+      <EntityTypeMapping TypeName="sinemaModel.sinema">
+        <MappingFragment StoreEntitySet="sinema">
+          <ScalarProperty Name="sinemaID" ColumnName="sinemaID" />
+          <ScalarProperty Name="sinemaAd" ColumnName="sinemaAd" />
+          <ScalarProperty Name="sinemaYer" ColumnName="sinemaYer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="sinemaModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kullanici">
+      <EntityTypeMapping TypeName="sinemaModel.kullanici">
+        <MappingFragment StoreEntitySet="kullanici">
+          <ScalarProperty Name="kullanicisifre" ColumnName="kullanicisifre" />
+          <ScalarProperty Name="kullaniciadi" ColumnName="kullaniciadi" />
+          <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

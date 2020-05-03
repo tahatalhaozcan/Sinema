@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="ng.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="giris.css" rel="stylesheet" />
+
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body ng-app="filmsys" ng-controller="eklemeCtrl">
+  <a href="silmeislemleri.html">  <button class="btn btn-black" style="float:left">Silme İşlemleri</button></a>
+    <a href="gosterim.html">  <button class="btn btn-black" style="float:right"> Gösterimler</button></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Film Bilgileri</h3>
+                <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Yeni Film</h1>
+                <label for="inputEmail" class="sr-only"></label>
+                <input type="text" ng-model="film.filmAd" class="form-control" placeholder="Film Adı" required="" autofocus="">
+                <label for="inputPassword" class="sr-only"></label>
+                <input type="text" ng-model="film.filmTur" class="form-control" placeholder="Film Türü" required="">
+                <label for="inputPassword" class="sr-only"></label>
+                
+                <div class="checkbox mb-3">
+                </div>
+                <button class="btn btn-black" ng-click="yenifilmekle(film)">Yeni Film Ekle</button>
+               </div>
+            <div class="col-sm-6">
+                <h3>Seans Bilgileri</h3>
+                <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Yeni Seans</h1>
+                <label for="inputEmail" class="sr-only"></label>
+                <input type="text" ng-model="seans.seansZaman" class="form-control" placeholder="Seans Zamanı (örn:7.30 PM | 6 PM)" required="" autofocus="">
+                <label for="inputPassword" class="sr-only"></label>
+                <div class="checkbox mb-3">
+                </div>
+                <button class="btn btn-black" ng-click="yeniseansekle(seans)">Yeni Seans Ekle</button>
+            </div>
+                
+
+            </div>
+        </div>
+  <div class="col-sm-12">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div> 
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Sinema Bilgileri</h3>
+                <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Yeni Sinema</h1>
+                <label for="inputEmail" class="sr-only"></label>
+                <input type="text" ng-model="sinema.sinemaAd" class="form-control" placeholder="Sinema Adı" required="" autofocus="">
+                <label for="inputPassword" class="sr-only"></label>
+                <input type="text" ng-model="sinema.sinemaYer" class="form-control" placeholder=" Sinema Yer" required="">
+                <label for="inputPassword" class="sr-only"></label>
+
+                <div class="checkbox mb-3">
+                </div>
+                <button class="btn btn-black" ng-click="yenisinema(sinema)">Yeni Sinema Ekle</button>
+            </div>
+            <div class="col-sm-6">
+                <h3>Salon Bilgileri</h3>
+                <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Yeni Seans</h1>
+                <label for="inputEmail" class="sr-only"></label>
+                <input type="text" ng-model="salon.salonNo" class="form-control" placeholder="Salon Numarası ( Sadece 'Sayı' giriniz)" required="" autofocus="">
+                <label for="inputPassword" class="sr-only"></label>
+                <div class="checkbox mb-3">
+                </div>
+                <button class="btn btn-black" ng-click="yenisalonekle(salon)">Yeni Salon Ekle</button>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <h1>Gösterim Oluştur</h1>
+        <label>Sinema</label>
+        <select ng-model="sinemaid" class="form-control" id="exampleFormControlSelect1">
+            <option ng-repeat="x in sinemalar" value="{{x.sinemaID}}">{{x.sinemaAd}} {{x.sinemaYer}}</option>
+        </select>
+        <label>Film Seçiniz</label>
+        <select ng-model="filmid" class="form-control" id="exampleFormControlSelect1">
+            <option ng-repeat="x in filmler" value="{{x.filmID}}">{{x.filmAd}} {{x.filmTur}}</option>
+        </select>
+        <label>Seans Seçiniz</label>
+        <select class="form-control" ng-model="seansid">
+            <option ng-repeat="x in seanslar" value="{{x.seansID}}">Saat: {{x.seansZaman}}</option>
+        </select>
+        <label>Salon Seçiniz</label>
+        <select class="form-control" ng-model="salonid">
+            <option ng-repeat="x in salonlar" value="{{x.salonID}}">Salon No: {{x.salonNo}}</option>
+        </select>
+
+        <btn class="btn btn-black" ng-click="gosterimolustur(sinemaid,filmid,seansid,salonid)">Gösterim Oluştur</btn>
+    </div>
+    
+</body>
+</html>
